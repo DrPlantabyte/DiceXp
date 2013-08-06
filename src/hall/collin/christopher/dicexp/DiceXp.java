@@ -237,7 +237,7 @@ public class DiceXp {
 			int open = x.indexOf("(");
 			int close = x.lastIndexOf(")");
 			if(close < 0){throw new NumberFormatException("Found '(' without matching ')'");}
-			x.replace(open, close+1, (new Integer(eval(x.substring(open+1,close)))).toString());
+			x.replace(open, close+1, (new Integer(eval(x.substring(open+1,close),averageValue))).toString());
 		}
 		
 		// Dice
