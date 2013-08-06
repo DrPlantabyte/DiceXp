@@ -233,9 +233,13 @@ public class DiceXp {
 		
 		
 		// Parentheses
-		while(x.indexOf("(") > 0){
+		while(x.indexOf("(") >= 0){
 			int open = x.indexOf("(");
 			int close = x.lastIndexOf(")");
+			if(open > 0 && Character.isDigit(x.charAt(open-1))){// handle implied multiplication (e.g. "2(1d6+1)" == "2*(1d6)+1" )
+				x.insert(open, '*');
+				continue;
+			}
 			if(close < 0){throw new NumberFormatException("Found '(' without matching ')'");}
 			x.replace(open, close+1, (new Integer(eval(x.substring(open+1,close),averageValue))).toString());
 		}

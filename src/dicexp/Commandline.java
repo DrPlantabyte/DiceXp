@@ -391,8 +391,9 @@ public class Commandline {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					int v = dicex.eval(inputField.getText(), aveCheck.isSelected());
-					log.append(timestamp() + "\t" + inputField.getText() + " = " + v+"\n");
+					log.append(timestamp() + " \t" + inputField.getText() + " = " + v+"\n");
 				} catch (Exception ex){
+					Logger.getLogger(Commandline.class.getCanonicalName()).log(Level.SEVERE, ex.getClass().getSimpleName(), ex);
 					JOptionPane.showMessageDialog(frame, ex, "Error!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
